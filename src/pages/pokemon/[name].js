@@ -205,12 +205,22 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
 export async function getStaticProps({ params }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${params.name}`)
+
+  if (!res.ok) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
   const data = await res.json()
 
   const pokemon = {
@@ -229,5 +239,6 @@ export async function getStaticProps({ params }) {
     props: {
       pokemon,
     },
+    revalidate: 86400,
   }
 }
