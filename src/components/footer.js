@@ -8,8 +8,8 @@ export default function Footer() {
         <p>
           Created by{' '}
           <Link
-            href="https://github.com/brandonpaldom"
-            rel=" noopener noreferrer"
+            href="https://brandonpalmeros.dev/"
+            rel="noopener"
             target="_blank"
             className="underline"
           >
